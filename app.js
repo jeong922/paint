@@ -1,10 +1,13 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+const textInput = document.querySelector('#text');
+const fileInput = document.querySelector('#file');
 const modeBtn = document.querySelector('#mode-btn');
 const clearBtn = document.querySelector('#clear-btn');
 const eraserBtn = document.querySelector('#eraser-btn');
 const colorOptions = document.querySelectorAll('.color-option');
 const lineWidth = document.querySelector('#line-width');
 const color = document.querySelector('#color');
+const saveBtn = document.querySelector('#save');
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -84,6 +87,36 @@ function onEraserClick() {
   modeBtn.innerText = 'fill';
 }
 
+function onFileChange(event) {
+  const file = event.target.files[0];
+  const url = URL.createObjectURL(file);
+  const image = new Image();
+  image.src = url;
+  image.onload = () => {
+    ctx.drawImage(image, 0, 0, CANVAS_WIDTH, CANVAS_HEIGTH);
+  };
+}
+
+function onDoubleClick(event) {
+  const text = textInput.value;
+  if (text !== '') {
+    ctx.save();
+    ctx.lineWidth = 1;
+    ctx.font = '48px serif';
+    ctx.fillText(text, event.offsetX, event.offsetY);
+    ctx.restore();
+  }
+}
+
+function onSaveClick(event) {
+  const url = canvas.toDataURL();
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'myImage🎨.png';
+  a.click();
+}
+
+canvas.addEventListener('dblclick', onDoubleClick);
 canvas.addEventListener('mousemove', onMove);
 canvas.addEventListener('mousedown', startPainting);
 canvas.addEventListener('mouseup', cancelPainting);
@@ -98,3 +131,5 @@ colorOptions.forEach((color) => color.addEventListener('click', onColorClick));
 modeBtn.addEventListener('click', onModeColor);
 clearBtn.addEventListener('click', clearCanvas);
 eraserBtn.addEventListener('click', onEraserClick);
+fileInput.addEventListener('change', onFileChange);
+saveBtn.addEventListener('click', onSaveClick);

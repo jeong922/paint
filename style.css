@@ -8,8 +8,8 @@ body {
 canvas {
   width: 800px;
   height: 800px;
-  border: 1px solid rgb(143, 143, 143);
   background-color: white;
+  box-shadow: 0 5px 18px -7px rgba(0, 0, 0, 1);
 }
 
 .color-option {
