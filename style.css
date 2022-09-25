@@ -1,4 +1,17 @@
+:root {
+  --black: black;
+  --white: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
+  width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,8 +25,61 @@ canvas {
   box-shadow: 0 5px 18px -7px rgba(0, 0, 0, 1);
 }
 
+button {
+  padding: 5px 8px;
+  font-size: 18px;
+  text-transform: uppercase;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(230, 177, 170, 0.5);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgba(255, 234, 234, 0.7);
+}
+
+h2 {
+  text-transform: uppercase;
+}
+
+label {
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.tool {
+  background-color: rgba(255, 218, 213, 0.3);
+  padding: 20px;
+  margin-left: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 18px -7px rgba(0, 0, 0, 1);
+}
+
+.colors-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.colors {
+  display: flex;
+  margin: 10px 0;
+}
+
 .color-option {
   width: 50px;
   height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 5px 18px -7px rgba(0, 0, 0, 1);
   cursor: pointer;
+  margin-left: 10px;
+}
+
+.file {
+}
+
+.text-wrapper {
+  display: flex;
+  flex-direction: column;
 }
